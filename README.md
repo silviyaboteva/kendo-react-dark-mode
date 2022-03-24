@@ -5,7 +5,8 @@ This is an example KendoReact application showcasing how to switch between dark 
 ## Prerequisits
 - Node.js v14 or newer
 - Gulp v4
-- If using npm version < 7 make sure that the following dependencies are installed: `postcss postcss-calc autoprefixer`
+- npm v7 or newer
+> If using npm version < 7 make sure that the following dependencies are installed: `postcss postcss-calc autoprefixer`
 
 ## Install
 
