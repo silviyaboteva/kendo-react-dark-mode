@@ -18,7 +18,7 @@
     "react-scripts": "5.0.0"
   },
   "scripts": {
-    "prestart": "npx gulp sass",
+    "prestart": "gulp sass",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,15 +43,8 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.4",
-    "fibers": "^5.0.1",
+    "@progress/kendo-theme-tasks": "^1.15.1",
     "gulp": "^4.0.2",
-    "gulp-debug": "^4.0.0",
-    "gulp-postcss": "^9.0.1",
-    "gulp-sass": "^5.1.0",
-    "node-sass": "^7.0.1",
-    "postcss": "^8.4.12",
-    "postcss-calc": "^8.2.4",
-    "sass": "^1.49.9"
+    "node-sass": "^7.0.1"
   }
 }

@@ -1,32 +1,23 @@
-const gulp = require('gulp')
-const sass = require('gulp-sass')(require('sass'));
-const postcss = require('gulp-postcss')
-const debug = require('gulp-debug')
-const autoprefixer = require('autoprefixer')
-const calc = require("postcss-calc");
-const Fiber = require('fibers');
+const { kendoSassBuild } = require('@progress/kendo-theme-tasks/src/build/kendo-build');
+const nodeSass = require('node-sass');
+const { series } = require("gulp");
 
-sass.compiler = require('node-sass');
+const themes = ['light', 'dark'];
 
-gulp.task('sass', function () {
-  const sassOptions = {
-    precision: 10,
-    outputStyle: 'expanded',
-    fiber: Fiber
-  };
+function buildStyles(cb) {
+    themes.forEach((theme) => {
+      kendoSassBuild({
+        file: `./src/sass/${theme}-theme.scss`,
+        output: {
+            path: './public'
+        },
+        sassOptions: {
+            implementation: nodeSass,
+            outputStyle: 'compressed'
+        }
+      });
+      cb();
+    });
+}
 
-  const plugins = [
-    calc({
-        precision: 10
-    }),
-    autoprefixer({
-        overrideBrowserslist: [ '> 10%' ]
-    })
-  ]
-  return gulp
-    .src('src/sass/*-theme.scss')
-    .pipe(debug({title: 'Sass files:'}))
-    .pipe(sass.sync(sassOptions).on('error', sass.logError))
-    .pipe(postcss(plugins))
-    .pipe(gulp.dest('./public'))
-})
+exports.sass = series(buildStyles);
